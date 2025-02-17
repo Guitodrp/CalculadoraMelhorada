@@ -28,26 +28,33 @@ public sealed class CalculatorNew(string message)
 
             Console.WriteLine("Escolha um operador: ");
             int operador = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine();
-
             if (!operadores.TryGetValue(operador, out string operadorTexto))
             {
                 Console.WriteLine("Operador inválido!");
                 continue;
             }
             Console.WriteLine("Digite o primeiro número: ");
-            double num1 = Convert.ToDouble(Console.ReadLine());
-            Console.WriteLine("Digite o segundo número: ");
-            double num2 = Convert.ToDouble(Console.ReadLine());
-            Console.WriteLine();
+            string num1 = Console.ReadLine();
 
-            Console.WriteLine("Resultado: " + Calcular(operador, num1, num2));
+            if (!int.TryParse(num1, out int numero1))
+            {
+                Console.WriteLine($"{num1} não pode ser convertido para double.");
+            }
+            Console.WriteLine("Digite o segundo número: ");
+            string num2 = Console.ReadLine();
+
+            if (!int.TryParse(num2, out int numero2))
+            {
+                Console.WriteLine($"{num1} não pode ser convertido para double.");
+            }
+
+            Console.WriteLine("Resultado: " + Calcular(operador, numero1, numero2));
             Console.WriteLine();
 
             //Console.WriteLine("Deseja realizar outra conta? (s/n)");
 
             Console.Write("Press <Enter> to continue... ");
-            if(Console.ReadKey().Key != ConsoleKey.Enter) 
+            if (Console.ReadKey().Key != ConsoleKey.Enter)
             {
                 break;
             }
